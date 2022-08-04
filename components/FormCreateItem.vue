@@ -7,7 +7,13 @@
     <input type="text" name="name" placeholder="Введите наименование товара" required>
 
     <label class="form__label" for="description">Описание товара</label>
-    <textarea id="form-description" name="description" placeholder="Введите описание товара" cols="30" rows="5" />
+    <textarea
+      id="form-description"
+      name="description"
+      placeholder="Введите описание товара"
+      cols="30"
+      rows="5"
+    />
 
     <div class="form__label">
       <label for="image-link">Ссылка на изображение товара</label>
@@ -33,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import "~assets/scss/base";
   .form {
     display: flex;
@@ -41,7 +47,7 @@ export default {
     background-color: $white;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
     padding: 25px 20px;
-    max-width: 450px;
+    height: fit-content;
 
     label {
       font-size: 10px;
@@ -67,6 +73,12 @@ export default {
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
       padding: 10px;
       margin: 7px 0 0 0;
+      resize: none;
+
+      &:focus {
+        // box-shadow: inset 0 0 2px red;
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02), inset 0 0 2px $delete-button;
+      }
     }
 
     input::placeholder, textarea::placeholder {
