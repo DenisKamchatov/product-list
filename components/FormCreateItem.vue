@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import "~assets/scss/base";
   .form {
     display: flex;
@@ -74,6 +74,11 @@ export default {
       padding: 10px;
       margin: 7px 0 0 0;
       resize: none;
+
+      &:focus {
+        // box-shadow: inset 0 0 2px red;
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02), inset 0 0 2px $delete-button;
+      }
     }
 
     input::placeholder, textarea::placeholder {
