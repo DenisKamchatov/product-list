@@ -27,7 +27,7 @@
     </div>
     <input v-model="image" type="text" name="image-link" placeholder="Введите ссылку" required>
 
-    <div :class="[{ form__label, form__priceRequired, form__priceInvalid }]">
+    <div :class="[{ form__label, form__priceRequired }]">
       <label for="price">Цена товара</label>
       <div class="form__label-dot" />
     </div>
@@ -109,7 +109,6 @@ export default {
         this.form__priceRequired = true
         this.valid.price = false
       } else {
-        this.form__priceInvalid = false
         this.valid.price = true
       }
 
@@ -127,7 +126,7 @@ export default {
   },
   methods: {
     getValid () {
-      if (this.form__nameRequired === true && this.form__imageRequired === true && this.form__priceRequired === true && this.form__priceInvalid === true) {
+      if (this.form__nameRequired === true && this.form__imageRequired === true && this.form__priceRequired === true) {
         this.valid = true
       } else {
         this.valid = false
@@ -169,18 +168,6 @@ export default {
       position: relative;
       &::after {
         content: 'Поле является обязательным';
-        font-size: 8px;
-        font-weight: 400;
-        color: $text-validation;
-        position: absolute;
-        bottom: -55px;
-        left: 0;
-      }
-    }
-    &__priceInvalid {
-      position: relative;
-      &::after {
-        content: 'Цена должна быть выше 0!';
         font-size: 8px;
         font-weight: 400;
         color: $text-validation;
