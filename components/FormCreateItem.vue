@@ -4,38 +4,54 @@
       <label for="name">Наименование товара</label>
       <div class="form__label-dot" />
     </div>
-    <input type="text" name="name" placeholder="Введите наименование товара" required>
+    <input v-model="name" type="text" name="name" placeholder="Введите наименование товара" required>
 
     <label class="form__label" for="description">Описание товара</label>
     <textarea
       id="form-description"
+      v-model="description"
       name="description"
       placeholder="Введите описание товара"
       cols="30"
       rows="5"
     />
-
     <div class="form__label">
       <label for="image-link">Ссылка на изображение товара</label>
       <div class="form__label-dot" />
     </div>
-    <input type="text" name="image-link" placeholder="Введите ссылку" required>
+    <input v-model="image" type="text" name="image-link" placeholder="Введите ссылку" required>
 
     <div class="form__label">
-      <label for="image-link">Цена товара</label>
+      <label for="price">Цена товара</label>
       <div class="form__label-dot" />
     </div>
-    <input type="number" name="image-link" placeholder="Введите цену" required>
+    <input v-model.number="price" type="number" name="price" placeholder="Введите цену" required>
 
-    <ButtonForm form="form-create-item" text="Добавить товар" />
+    <ButtonForm
+      form="form-create-item"
+      text="Добавить товар"
+      :name="name"
+      :description="description"
+      :image="image"
+      :price="Number(price)"
+    />
   </form>
 </template>
 
 <script>
 import ButtonForm from './UI/ButtonForm.vue'
+
 export default {
   name: 'FormCreateItem',
-  components: { ButtonForm }
+  components: { ButtonForm },
+  data () {
+    return {
+      name: '',
+      description: '',
+      image: '',
+      price: 0
+    }
+  }
 }
 </script>
 
