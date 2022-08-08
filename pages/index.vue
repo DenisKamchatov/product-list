@@ -7,7 +7,7 @@
     </header>
     <main class="main">
       <FormCreateItem />
-      <div class="main__products products">
+      <div v-if="allProducts.length !== 0" class="main__products products">
         <ProductItem
           v-for="(product, index) of allProducts"
           :id="index"
@@ -18,6 +18,9 @@
           :price="product.price"
         />
       </div>
+      <h1 v-else class="main__products-empty">
+        Список товаров пуст!
+      </h1>
     </main>
     <nuxt />
   </div>
@@ -38,9 +41,6 @@ export default {
   computed: {
     ...mapGetters(['GET_allProducts']),
     allProducts () {
-      // const numb = 1234567
-      // const numbFmt = numb.toLocaleString('ru-RU')
-      // console.log(numbFmt)
       return this.GET_allProducts
     }
   },
@@ -70,7 +70,9 @@ export default {
     grid-template-columns: 30% 70%;
     grid-gap: 15px;
     margin: 10px 0 0 0;
-
+    &__products-empty {
+      text-align: center;
+    }
     &__products {
       flex-basis: 70%;
       display: grid;
