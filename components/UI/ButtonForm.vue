@@ -1,5 +1,5 @@
 <template>
-  <button class="form__submit-button submit-button" type="submit" :form="form" @click="addNewProduct(name, description, image, price)">
+  <button :class="[{form__submitButton: true, submitButton: true, active: valid}]" type="submit" :form="form" @click="addNewProduct(name, description, image, price)">
     {{ text }}
   </button>
 </template>
@@ -18,7 +18,7 @@ export default {
     },
     name: {
       type: String,
-      default: 'Название'
+      default: ''
     },
     description: {
       type: String,
@@ -26,18 +26,27 @@ export default {
     },
     image: {
       type: String,
-      default: 'https://static.tildacdn.com/tild3438-3833-4964-a238-383635613963/1522301901119501.jpg'
+      default: ''
     },
     price: {
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
+    },
+    valid: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
     }
   },
   methods: {
     ...mapMutations(['addProducts', 'updateProducts']),
     addNewProduct (name, description, image, price) {
-      this.addProducts({ name, description, image, price })
-      // this.updateProducts()
+      if (this.valid) {
+        this.addProducts({ name, description, image, price })
+      }
     }
   }
 }
@@ -45,23 +54,25 @@ export default {
 
 <style lang="scss" scoped>
   @import "~assets/scss/base";
-  .submit-button {
-    background-color: $button-bg;
-    color: $button-text;
+
+  .submitButton {
+    background-color: $button-bg-disabled;
+    color: $button-text-disabled;
+    cursor: default;
     padding: 15px;
     margin: 20px 0 0 0;
     border-radius: 10px;
     transition: 350ms;
+  }
 
-    &:hover {
+  .active {
+      background-color: $button-bg;
+      color: $button-text;
+      cursor: pointer;
+
+      &:hover {
       background-color: #3d7c33;
       transition: 350ms;
     }
   }
-  button[disabled] {
-    background-color: $button-bg-disabled;
-    color: $button-text-disabled;
-    cursor: default;
-  }
-
 </style>

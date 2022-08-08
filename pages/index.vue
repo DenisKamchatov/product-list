@@ -38,6 +38,9 @@ export default {
   computed: {
     ...mapGetters(['GET_allProducts']),
     allProducts () {
+      // const numb = 1234567
+      // const numbFmt = numb.toLocaleString('ru-RU')
+      // console.log(numbFmt)
       return this.GET_allProducts
     }
   },

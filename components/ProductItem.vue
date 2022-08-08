@@ -6,7 +6,7 @@
         {{ name }}
       </h3>
       <p class="product__description">
-        {{ description }}
+        {{ shortenedText }}
       </p>
       <h2 class="product__price">
         {{ price }} руб.
@@ -51,25 +51,26 @@ export default {
       default: ''
     },
     price: {
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
     }
   },
   data () {
     return {
-      shortDescription: this.description
+      // description: this.description
     }
   },
-  // computed: {
-  //   shortenedText () {
-  //     // console.log(this.name + ' ' + this.description)
-  //     if (this.shortDescription.length > 80) {
-  //       return this.shortDescription.slice(0, 80) + '...'
-  //     } else {
-  //       return this.shortDescription
-  //     }
-  //   }
-  // },
+  computed: {
+    shortenedText () {
+      // console.log(this.name + ' ' + this.description)
+      const shortDescription = this.description
+      if (shortDescription.length > 80) {
+        return shortDescription.slice(0, 80) + '...'
+      } else {
+        return shortDescription
+      }
+    }
+  },
   methods: {
     ...mapMutations(['deleteProduct']),
     deleteProductById (id) {
@@ -103,9 +104,7 @@ export default {
     }
     &__description {
       margin: 15px 0 0 0;
-      white-space: pre-line;
       overflow: hidden;
-      max-height: 60px;
     }
     &__price {
       position: absolute;
