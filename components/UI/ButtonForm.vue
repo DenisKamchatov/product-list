@@ -34,10 +34,10 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['addProducts']),
+    ...mapMutations(['addProducts', 'updateProducts']),
     addNewProduct (name, description, image, price) {
       this.addProducts({ name, description, image, price })
-      // console.log(name, description, image, price)
+      // this.updateProducts()
     }
   }
 }

@@ -2,7 +2,7 @@ export const state = () => ({
   products: [
     {
       name: 'Ноутбук',
-      description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+      description: 'Интересный ноутбук',
       image: 'https://technika-remont.ru/wp-content/uploads/f/d/0/fd03c6305c124fe7feb9d07b78743282.jpeg',
       price: 75000
     },
@@ -27,20 +27,39 @@ export const state = () => ({
   ]
 })
 
+export const actions = {
+  fetchLocalStorageData (ctx) {
+    const localProducts = JSON.parse(localStorage.getItem('products'))
+    ctx.commit('setProducts', localProducts)
+  }
+}
+
 export const mutations = {
   deleteProduct (state, id) {
     state.products = state.products.filter((product, index) => {
       return index !== id
     })
+    localStorage.setItem('products', JSON.stringify(state.products))
   },
   addProducts (state, { name, description, image, price }) {
     state.products.push({ name, description, image, price })
-    // console.log(name, description, image, price)
+
+    localStorage.setItem('products', JSON.stringify(state.products))
+  },
+  setProducts (state, localProducts) {
+    // localStorage.clear()
+    if (!localProducts) {
+      localStorage.setItem('products', JSON.stringify(state.products))
+    } else {
+      state.products = localProducts
+    }
   }
 }
 
 export const getters = {
   GET_allProducts (state) {
-    return state.products
+    if (localStorage.getItem('products')) {
+      return state.products
+    }
   }
 }

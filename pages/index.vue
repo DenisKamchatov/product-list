@@ -7,7 +7,6 @@
     </header>
     <main class="main">
       <FormCreateItem />
-      <!-- <h1>{{ $store.state.productsTest }}</h1> -->
       <div class="main__products products">
         <ProductItem
           v-for="(product, index) of allProducts"
@@ -25,7 +24,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import FormCreateItem from '~/components/FormCreateItem.vue'
 import ProductItem from '~/components/ProductItem.vue'
 
@@ -41,6 +40,12 @@ export default {
     allProducts () {
       return this.GET_allProducts
     }
+  },
+  async mounted () {
+    await this.fetchLocalStorageData()
+  },
+  methods: {
+    ...mapActions(['fetchLocalStorageData'])
   }
 }
 /**
@@ -57,7 +62,6 @@ export default {
 
 <style lang="scss">
   @import "~assets/scss/base";
-
   .main {
     display: grid;
     grid-template-columns: 30% 70%;
@@ -67,9 +71,10 @@ export default {
     &__products {
       flex-basis: 70%;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 32% 32% 32%;
       grid-template-rows: auto;
       grid-gap: 15px;
+      justify-items: stretch;
     }
   }
 </style>
