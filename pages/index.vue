@@ -10,8 +10,9 @@
       <!-- <h1>{{ $store.state.productsTest }}</h1> -->
       <div class="main__products products">
         <ProductItem
-          v-for="product in products"
-          :key="product.id"
+          v-for="(product, index) of allProducts"
+          :id="index"
+          :key="index"
           :name="product.name"
           :description="product.description"
           :image="product.image"
@@ -24,7 +25,7 @@
 </template>
 
 <script>
-// import mapGetters from 'vuex'
+import { mapGetters } from 'vuex'
 import FormCreateItem from '~/components/FormCreateItem.vue'
 import ProductItem from '~/components/ProductItem.vue'
 
@@ -33,44 +34,14 @@ export default {
   components: { FormCreateItem, ProductItem },
   data () {
     return {
-      products: {
-        laptop: {
-          id: 0,
-          name: 'Ноутбук',
-          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-          image: 'https://technika-remont.ru/wp-content/uploads/f/d/0/fd03c6305c124fe7feb9d07b78743282.jpeg',
-          price: 75000
-        },
-        iphone: {
-          id: 1,
-          name: 'Iphone X',
-          description: 'Iphone X нового поколения',
-          image: 'https://technika-remont.ru/wp-content/uploads/f/d/0/fd03c6305c124fe7feb9d07b78743282.jpeg',
-          price: 55000
-        },
-        tv: {
-          id: 3,
-          name: 'Телевизор',
-          description: 'Телевизор, который поддерживает Smart TV',
-          image: 'https://technika-remont.ru/wp-content/uploads/f/d/0/fd03c6305c124fe7feb9d07b78743282.jpeg',
-          price: 98000
-        },
-        headphones: {
-          id: 4,
-          name: 'Наушники',
-          description: 'Наушники от Apple, Air Pods Pro',
-          image: 'https://technika-remont.ru/wp-content/uploads/f/d/0/fd03c6305c124fe7feb9d07b78743282.jpeg',
-          price: 24000
-        }
-      }
+    }
+  },
+  computed: {
+    ...mapGetters(['GET_allProducts']),
+    allProducts () {
+      return this.GET_allProducts
     }
   }
-  // compited: {
-  //   ...mapGetters(['allProducts']),
-  //   getProducts () {
-  //     return console.log(this.allProducts)
-  //   }
-  // }
 }
 /**
  * ff - Source Sans Pro

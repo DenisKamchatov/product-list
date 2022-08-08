@@ -12,7 +12,7 @@
         {{ price }} руб.
       </h2>
     </div>
-    <div class="product__delete">
+    <div class="product__delete" @click="deleteProductById(id)">
       <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_4_349)">
           <path d="M10.207 5.79688C9.99998 5.79688 9.83224 5.96462 9.83224 6.17158V13.2535C9.83224 13.4604 9.99998 13.6283 10.207 13.6283C10.4139 13.6283 10.5817 13.4604 10.5817 13.2535V6.17158C10.5817 5.96462 10.4139 5.79688 10.207 5.79688Z" fill="white" />
@@ -31,8 +31,13 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   props: {
+    id: {
+      type: Number,
+      default: 0
+    },
     name: {
       type: String,
       default: 'Наименование товара'
@@ -62,6 +67,12 @@ export default {
       } else {
         return this.shortDescription
       }
+    }
+  },
+  methods: {
+    ...mapMutations(['deleteProduct']),
+    deleteProductById (id) {
+      this.deleteProduct(id)
     }
   }
 }
