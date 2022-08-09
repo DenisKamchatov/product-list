@@ -1,11 +1,11 @@
 <template>
-  <button :class="[{form__submitButton: true, submitButton: true, active: valid}]" type="submit" :form="form" @click="addNewProduct(name, description, image, price)">
+  <button :class="[{form__submitButton: true, submitButton: true, active: valid}]" type="submit" :form="form" @click="addNewProduct(name, description, image, price, sorting)">
     {{ text }}
   </button>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   props: {
     form: {
@@ -41,11 +41,32 @@ export default {
     return {
     }
   },
+  computed: {
+    ...mapGetters(['GET_choosedSorting', 'GET_allProducts']),
+    sorting () {
+      return this.GET_choosedSorting
+    },
+    allProducts () {
+      return this.GET_allProducts
+    }
+  },
   methods: {
-    ...mapMutations(['addProducts', 'updateProducts']),
-    addNewProduct (name, description, image, price) {
-      if (this.valid) {
-        this.addProducts({ name, description, image, price })
+    ...mapMutations(['addProducts', 'chooseSorting']),
+    addNewProduct (name, description, image, price, sorting) {
+      const repeatProduct = this.allProducts.find((product) => {
+        if (product.name === name && product.description === description && product.image === image && product.price === price) {
+          return product
+        } else {
+          return 0
+        }
+      })
+      if (!repeatProduct) {
+        if (this.valid) {
+          this.addProducts({ name, description, image, price })
+          this.chooseSorting(sorting)
+        }
+      } else {
+        alert('Товары в списке не должны повторяться!')
       }
     }
   }
