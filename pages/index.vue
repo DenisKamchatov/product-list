@@ -3,20 +3,22 @@
     <MainHeader :active="active" />
     <main class="main" @click="showSortingList">
       <FormCreateItem />
-      <div v-if="allProducts.length !== 0" class="main__products products">
-        <ProductItem
-          v-for="(product, index) of allProducts"
-          :id="index"
-          :key="index"
-          :name="product.name"
-          :description="product.description"
-          :image="product.image"
-          :price="product.price"
-        />
-      </div>
-      <h1 v-else class="main__products-empty">
-        Список товаров пуст!
-      </h1>
+      <transition name="fade" appear>
+        <div v-if="allProducts.length !== 0" class="main__products products">
+          <ProductItem
+            v-for="(product, index) of allProducts"
+            :id="index"
+            :key="index"
+            :name="product.name"
+            :description="product.description"
+            :image="product.image"
+            :price="product.price"
+          />
+        </div>
+        <h1 v-else class="main__products-empty">
+          Список товаров пуст!
+        </h1>
+      </transition>
     </main>
   </div>
 </template>
@@ -78,6 +80,12 @@ export default {
 
 <style lang="scss">
   @import "~assets/scss/base";
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+  }
   .main {
     display: grid;
     grid-gap: 15px;
