@@ -1,6 +1,6 @@
 <template>
   <form class="form" name="form-create-item">
-    <div :class="[{ form__label, form__nameRequired }]">
+    <div :class="[{ form__label: true, form__nameRequired }]">
       <label for="name">Наименование товара</label>
       <div class="form__label-dot" />
     </div>
@@ -21,13 +21,13 @@
       cols="30"
       rows="5"
     />
-    <div :class="[{ form__label, form__imageRequired }]">
+    <div :class="[{ form__label: true, form__imageRequired }]">
       <label for="image-link">Ссылка на изображение товара</label>
       <div class="form__label-dot" />
     </div>
     <input v-model="image" type="text" name="image-link" placeholder="Введите ссылку" required>
 
-    <div :class="[{ form__label, form__priceRequired }]">
+    <div :class="[{ form__label: true, form__priceRequired }]">
       <label for="price">Цена товара</label>
       <div class="form__label-dot" />
     </div>
@@ -63,7 +63,6 @@ export default {
       description: '',
       image: '',
       price: '',
-      form__label: true,
       form__nameRequired: true,
       form__imageRequired: true,
       form__priceRequired: false,
@@ -109,6 +108,7 @@ export default {
         this.form__priceRequired = true
         this.valid.price = false
       } else {
+        this.form__priceRequired = false
         this.valid.price = true
       }
 
