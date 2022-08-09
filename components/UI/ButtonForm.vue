@@ -80,7 +80,6 @@ export default {
     background-color: $button-bg-disabled;
     color: $button-text-disabled;
     cursor: default;
-    padding: 15px;
     margin: 20px 0 0 0;
     border-radius: 10px;
     transition: 350ms;
@@ -94,6 +93,17 @@ export default {
       &:hover {
       background-color: #3d7c33;
       transition: 350ms;
+    }
+  }
+  @media (min-width: $screen-xxl) {
+    .submitButton {
+      font-size: 20px;
+      padding: 20px;
+    }
+  }
+  @media (max-width: $screen-xxl) {
+    .submitButton {
+      padding: 15px;
     }
   }
 </style>

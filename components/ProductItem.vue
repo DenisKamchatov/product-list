@@ -62,8 +62,8 @@ export default {
   computed: {
     shortenedText () {
       const shortDescription = this.description
-      if (shortDescription.length > 80) {
-        return shortDescription.slice(0, 80) + '...'
+      if (shortDescription.length > 70) {
+        return shortDescription.slice(0, 70) + '...'
       } else {
         return shortDescription
       }
@@ -87,6 +87,7 @@ export default {
     position: relative;
     transition: 350ms;
     border-radius: 5px;
+    cursor: default;
 
     &__image {
       width: 100%;
@@ -103,6 +104,7 @@ export default {
     &__description {
       margin: 15px 0 0 0;
       overflow: hidden;
+      height: 65px;
     }
     &__price {
       position: absolute;
@@ -130,6 +132,29 @@ export default {
           opacity: 1;
           cursor: pointer;
         }
+      }
+    }
+  }
+  @media (min-width: $screen-xxl) {
+    .product {
+      height: 350px;
+
+      &__description {
+        height: 95px;
+      }
+    }
+  }
+  @media (max-width: $screen-xxl) {
+    .product {
+      height: 320px;
+    }
+  }
+  @media (max-width: $screen-md) {
+    .product {
+      height: 340px;
+
+      &__description {
+        height: 85px;
       }
     }
   }

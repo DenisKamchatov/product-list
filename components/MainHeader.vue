@@ -55,6 +55,7 @@ export default {
   .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     z-index: 6;
 
     &__sorting-wrapper {
@@ -68,7 +69,6 @@ export default {
     background-color: $white;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    padding: 15px 20px;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -98,4 +98,26 @@ export default {
       }
     }
   }
+  @media (min-width: $screen-xxl) {
+    .sorting {
+      padding: 10px 15px;
+      &__list {
+        width: 200px;
+      }
+      &__item {
+        padding: 15px 20px;
+        font-size: 15px;
+      }
+    }
+  }
+  @media (max-width: $screen-xxl) {
+    .sorting {
+      padding: 10px 15px;
+    }
+  }
+  // @media (max-width: $screen-xs) {
+  //   .sorting {
+  //     padding: 10px 15px;
+  //   }
+  // }
 </style>
