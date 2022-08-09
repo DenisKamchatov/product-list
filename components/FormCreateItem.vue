@@ -187,7 +187,7 @@ export default {
       }
     }
     &__inputNameRequired, &__inputImageRequired, &__inputPriceRequired {
-      outline: 1px solid $delete-button;
+      outline: 1px solid $text-validation;
     }
     input, textarea {
       background-color: $white;
@@ -196,7 +196,7 @@ export default {
       resize: none;
 
       &:focus {
-        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02), inset 0 0 2px $delete-button;
+        outline: 1px solid $text-form-focus;
       }
     }
 
