@@ -11,8 +11,8 @@ And also implemented saving the list of products after page reloading (localStor
 4) Vue animations
 
 ## Versions
-Node JS - 16.14.0
-Vue CLI - 4.5.15
+1) Node JS - 16.14.0
+2) Vue CLI - 4.5.15
 
 ## Build Setup
 
