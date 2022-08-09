@@ -80,20 +80,56 @@ export default {
   @import "~assets/scss/base";
   .main {
     display: grid;
-    grid-template-columns: 30% 70%;
     grid-gap: 15px;
     margin: 10px 0 0 0;
     padding: 0 0 50px 0;
+
     &__products-empty {
       text-align: center;
     }
     &__products {
-      flex-basis: 70%;
       display: grid;
-      grid-template-columns: 32% 32% 32%;
       grid-template-rows: auto;
       grid-gap: 15px;
       justify-items: stretch;
+    }
+  }
+  @media (min-width: $screen-xxl) {
+    .main {
+      grid-template-columns: 35% 65%;
+
+      &__products {
+        grid-template-columns: 24% 24% 24% 24%;
+      }
+    }
+  }
+  @media (max-width: $screen-xxl) {
+    .main {
+      grid-template-columns: 30% 70%;
+
+      &__products {
+        grid-template-columns: 32% 32% 32%;
+      }
+    }
+  }
+  @media (max-width: $screen-lg) {
+    .main {
+      grid-template-columns: 40% 60%;
+      &__products {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+  @media (max-width: $screen-md) {
+    .main {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: $screen-xs) {
+    .main {
+      &__products {
+        grid-template-columns: 1fr;
+      }
     }
   }
 </style>
