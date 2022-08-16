@@ -1,3 +1,4 @@
+The finished project is in the master branch
 # idaproject-testing
 
 A website with a list of products and a form written in Vue JS (Nuxt JS). 
